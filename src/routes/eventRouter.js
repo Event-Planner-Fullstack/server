@@ -27,7 +27,7 @@ router.post('/event', (request, response, next) => {
 });
 
 router.put('/event/:id', (request, response, next) => {
-  event.update(request.body, request.params.id)
+  event.update(request.params.id, request.body)
     .then(foodRecord => response.status(200).send(foodRecord))
     .catch(error => next(error));
 });

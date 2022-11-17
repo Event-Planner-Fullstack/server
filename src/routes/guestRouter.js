@@ -24,7 +24,7 @@ router.post('/guest', (request, response, next) => {
 });
 
 router.put('/guest/:id', (request, response, next) => {
-  guest.update(request.body, request.params.id)
+  guest.update(request.params.id, request.body)
     .then(foodRecord => response.status(200).send(foodRecord))
     .catch(error => next(error));
 });

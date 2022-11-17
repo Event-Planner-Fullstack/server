@@ -24,7 +24,7 @@ router.post('/venue', (request, response, next) => {
 });
 
 router.put('/venue/:id', (request, response, next) => {
-  venue.update(request.body, request.params.id)
+  venue.update(request.params.id, request.body)
     .then(venueRecord => response.status(200).send(venueRecord))
     .catch(error => next(error));
 });
