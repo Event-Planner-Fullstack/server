@@ -6,9 +6,9 @@ class Collection {
     this.model = model;
   }
 
-  get(id) {
-    if (id) {
-      return this.model.findOne({ where: {id: id} });
+  read(query) {
+    if (query) {
+      return this.model.findOne(query);
     }
     else {
       return this.model.findAll({});
@@ -20,12 +20,12 @@ class Collection {
   }
 
   update(id, data) {
-    return this.model.findOne({ where: { id } })
+    return this.model.findOne(id)
       .then(record => record.update(data));
   }
 
   delete(id) {
-    return this.model.destroy({ where: { id }});
+    return this.model.destroy(id);
   }
 
 }
