@@ -5,8 +5,6 @@ const authRouter = express.Router();
 
 const { users } = require('./../models');
 const basicAuth = require('./../auth/middleware/basic-auth');
-const bearerAuth = require('./../auth/middleware/bearer-auth.js');
-const permissions = require('./../auth/middleware/acl.js');
 
 authRouter.post('/signup', async (req, res, next) => {
   try {
@@ -27,16 +25,6 @@ authRouter.post('/signin', basicAuth, (req, res, next) => {
     token: req.user.token,
   };
   res.status(200).json(user);
-});
-
-authRouter.get('/users', bearerAuth, permissions('delete'), async (req, res, next) => {
-  const userRecords = await users.findAll({});
-  const list = userRecords.map(user => user.username);
-  res.status(200).json(list);
-});
-
-authRouter.get('/secret', bearerAuth, async (req, res, next) => {
-  res.status(200).send('Welcome to the secret area');
 });
 
 module.exports = authRouter;

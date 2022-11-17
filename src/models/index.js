@@ -4,7 +4,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const venueModel = require('./venue.js');
 const eventModel = require('./event.js');
 const guestModel = require('./guest.js');
-const Collection = require('../Collection.js');
+const Collection = require('./Collection.js');
 
 const userSchema = require('./user.js');
 
