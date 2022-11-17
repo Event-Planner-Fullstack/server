@@ -3,6 +3,9 @@
 const express = require('express');
 const router = express.Router();
 
+// const bearer = require('./../auth/middleware/bearer-auth');
+// const acl = require('./../auth/acl/')
+
 const { event } = require('./../models');
 
 router.get('/event', (request, response, next) => {

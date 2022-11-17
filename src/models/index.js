@@ -10,7 +10,7 @@ const userSchema = require('./user.js');
 
 const DATABASE_URL = process.env.DATABASE_URL || 'sqlite::memory';
 
-const sequelize = new Sequelize(DATABASE_URL);
+const sequelize = new Sequelize(DATABASE_URL, { logging: false });
 const venue = venueModel(sequelize, DataTypes);
 const event = eventModel(sequelize, DataTypes);
 const guest = guestModel(sequelize, DataTypes);

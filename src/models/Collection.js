@@ -19,9 +19,12 @@ class Collection {
     return this.model.create(record);
   }
 
-  update(id, data) {
-    return this.model.findOne(id)
-      .then(record => record.update(data));
+  async update(id, data) {
+    const update = await this.model.update(data, { where: { id: id } });
+    console.log(update);
+    const record = await this.read({ where: { id: id } });
+    console.log(record);
+    return record;
   }
 
   delete(id) {
