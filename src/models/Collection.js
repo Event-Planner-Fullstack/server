@@ -20,11 +20,8 @@ class Collection {
   }
 
   async update(id, data) {
-    const update = await this.model.update(data, { where: { id: id } });
-    console.log(update);
-    const record = await this.read({ where: { id: id } });
-    console.log(record);
-    return record;
+    await this.model.update(data, { where: { id: id } });
+    return this.read({ where: { id: id } });
   }
 
   delete(id) {
