@@ -24,10 +24,17 @@ const userModel = (sequelize, DataTypes) => {
       type: DataTypes.VIRTUAL,
       get() {
         const acl = {
-          vendor: ['venue', 'event'],
-          client: ['event', 'guest'],
-          guest: ['event'],
-          admin: ['venue', 'event', 'guest', 'all'],
+          // vendors can do all CRUD to venue, and read and update from events
+          vendor: ['rVenue', 'cVenue', 'uVenue', 'dVenue', 'rEvents', 'uEvents'],
+
+          // clients can do all CRUD to events and guests, they can only read from venues
+          client: ['rEvent', 'cEvent', 'uEvent', 'dEvent', 'rVenue', 'rGuest', 'cGuest', 'uGuest', 'dGuest'],
+
+          // guests can only create a guest
+          guest: ['cGuest'],
+
+          // admin have all the rights
+          admin: ['all'],
         };
         return acl[this.role];
       },
