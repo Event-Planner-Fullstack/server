@@ -12,7 +12,7 @@ router.get('/guest', (request, response, next) => {
 });
 
 router.get('/guest/:id', (request, response, next) => {
-  guest.read({ where: {id: request.params.id} })
+  guest.read({ where: { id: request.params.id } })
     .then(guestRecord => response.status(200).send(guestRecord))
     .catch(error => next(error));
 });
@@ -32,6 +32,13 @@ router.put('/guest/:id', (request, response, next) => {
 router.delete('/guest/:id', (request, response, next) => {
   guest.delete(request.params.id)
     .then(guestRecord => response.status(200).send(guestRecord));
+});
+
+// get all the guests associated with an event id
+router.get('guest/event/:event_id', (request, response, next) => {
+  guest.read({ where: { event_id: request.params.event_id } })
+    .then(guestList => response.status(200).send(guestList))
+    .catch(error => next(error));
 });
 
 module.exports = router;

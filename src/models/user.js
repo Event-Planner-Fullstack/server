@@ -27,7 +27,7 @@ const userModel = (sequelize, DataTypes) => {
           vendor: ['venue', 'event'],
           client: ['event', 'guest'],
           guest: ['event'],
-          admin: ['venue', 'event', 'guest'],
+          admin: ['venue', 'event', 'guest', 'all'],
         };
         return acl[this.role];
       },
