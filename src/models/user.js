@@ -25,7 +25,7 @@ const userModel = (sequelize, DataTypes) => {
       get() {
         const acl = {
           // vendors can do all CRUD to venue, and read and update from events
-          vendor: ['rVenue', 'cVenue', 'uVenue', 'dVenue', 'rEvents', 'uEvents'],
+          vendor: ['rVenue', 'cVenue', 'uVenue', 'dVenue', 'rEvent', 'uEvent', 'cEvent'],
 
           // clients can do all CRUD to events and guests, they can only read from venues
           client: ['rEvent', 'cEvent', 'uEvent', 'dEvent', 'rVenue', 'rGuest', 'cGuest', 'uGuest', 'dGuest'],

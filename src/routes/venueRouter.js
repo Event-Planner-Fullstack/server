@@ -8,7 +8,7 @@ const permissions = require('./../auth/middleware/acl');
 
 const { venue } = require('./../models');
 
-router.get('/venue', bearerAuth, permissions('all'), (request, response, next) => {
+router.get('/venue', bearerAuth, permissions('rVenue'), (request, response, next) => {
   venue.read({}, true)
     .then(venueRecords => response.status(200).send(venueRecords))
     .catch(error => next(error));

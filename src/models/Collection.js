@@ -21,7 +21,7 @@ class Collection {
 
   async update(id, data) {
     await this.model.update(data, { where: { id: id } });
-    return this.read({ where: { id: id } });
+    return this.model.findOne({ where: { id: id } });
   }
 
   delete(id) {
