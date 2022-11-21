@@ -25,7 +25,7 @@ class Collection {
   }
 
   delete(id) {
-    return this.model.destroy(id);
+    return this.model.destroy({ where: { id: id } });
   }
 
 }
