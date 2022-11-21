@@ -4,6 +4,7 @@ const eventModel = (sequelize, DataTypes) => sequelize.define('Event', {
   item: { type: DataTypes.STRING, required: true },
   client_id: { type: DataTypes.NUMBER, required: true },
   venue_id: { type: DataTypes.NUMBER, required: true },
+  vendor_id: { type: DataTypes.NUMBER, required: true },
   date: { type: DataTypes.DATE, required: true },
   pocName: { type: DataTypes.STRING, required: true },
   pocNumber: { type: DataTypes.STRING, required: true },

@@ -22,13 +22,13 @@ router.get('/event/:id', bearerAuth, permissions('rEvent'), (request, response, 
 
 router.post('/event', bearerAuth, permissions('cEvent'), (request, response, next) => {
   event.create(request.body)
-    .then(foodRecord => response.status(200).send(foodRecord))
+    .then(eventRecord => response.status(200).send(eventRecord))
     .catch(error => next(error));
 });
 
 router.put('/event/:id', bearerAuth, permissions('uEvent'), (request, response, next) => {
   event.update(request.params.id, request.body)
-    .then(foodRecord => response.status(200).send(foodRecord))
+    .then(eventRecord => response.status(200).send(eventRecord))
     .catch(error => next(error));
 });
 
@@ -39,8 +39,8 @@ router.delete('/event/:id', bearerAuth, permissions('dEvent'), (request, respons
 });
 
 // get all the events associated with a user id
-router.get('/event/user/:user_id', bearerAuth, permissions('rEvent'), (request, response, next) => {
-  event.read({ where: { user_id: request.params.user_id } }, true)
+router.get('/event/user/:client_id', bearerAuth, permissions('rEvent'), (request, response, next) => {
+  event.read({ where: { client_id: request.params.client_id } }, true)
     .then(userEvents => response.status(200).send(userEvents))
     .catch(error => next(error));
 });
