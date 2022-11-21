@@ -9,13 +9,13 @@ const permissions = require('./../auth/middleware/acl');
 const { guest } = require('./../models');
 
 router.get('/guest', bearerAuth, permissions('all'), (request, response, next) => {
-  guest.read()
+  guest.read({}, true)
     .then(guestRecords => response.status(200).send(guestRecords))
     .catch(error => next(error));
 });
 
 router.get('/guest/:id', bearerAuth, permissions('rGuest'), (request, response, next) => {
-  guest.read({ where: { id: request.params.id } })
+  guest.read({ where: { id: request.params.id } }, false)
     .then(guestRecord => response.status(200).send(guestRecord))
     .catch(error => next(error));
 });
@@ -39,7 +39,7 @@ router.delete('/guest/:id', bearerAuth, permissions('dGuest'), (request, respons
 
 // get all the guests associated with an event id
 router.get('guest/event/:event_id', bearerAuth, permissions('rGuest'), (request, response, next) => {
-  guest.read({ where: { event_id: request.params.event_id } })
+  guest.read({ where: { event_id: request.params.event_id } }, true)
     .then(guestList => response.status(200).send(guestList))
     .catch(error => next(error));
 });
