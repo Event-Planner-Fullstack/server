@@ -6,12 +6,12 @@ class Collection {
     this.model = model;
   }
 
-  read(query) {
-    if (query) {
+  read(query, findAll) {
+    if (!findAll) {
       return this.model.findOne(query);
     }
     else {
-      return this.model.findAll({});
+      return this.model.findAll(query);
     }
   }
 

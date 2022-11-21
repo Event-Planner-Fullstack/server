@@ -9,13 +9,13 @@ const permissions = require('./../auth/middleware/acl');
 const { venue } = require('./../models');
 
 router.get('/venue', bearerAuth, permissions('all'), (request, response, next) => {
-  venue.read()
+  venue.read({}, true)
     .then(venueRecords => response.status(200).send(venueRecords))
     .catch(error => next(error));
 });
 
 router.get('/venue/:id', bearerAuth, permissions('rVenue'), (request, response, next) => {
-  venue.read({ where: { id: request.params.id } })
+  venue.read({ where: { id: request.params.id } }, false)
     .then(venueRecord => response.status(200).send(venueRecord))
     .catch(error => next(error));
 });
@@ -39,8 +39,8 @@ router.delete('/venue/:id', bearerAuth, permissions('dVenue'), (request, respons
 });
 
 // get all the venues associated with a user id
-router.get('/venue/user/user_id', bearerAuth, permissions('rVenue'), (request, response, next) => {
-  venue.read({ where: { user_id: request.params.user_id } })
+router.get('/venue/user/:vendor_id', bearerAuth, permissions('rVenue'), (request, response, next) => {
+  venue.read({ where: { vendor_id: request.params.vendor_id } }, true)
     .then(venueRecords => response.status(200).send(venueRecords))
     .catch(error => next(error));
 });
