@@ -39,7 +39,7 @@ router.delete('/guest/:id', bearer, permissions('dGuest'), (request, response, n
 });
 
 // get all the guests associated with an event id
-router.get('guest/event/:event_id', bearer, permissions('rGuest'), (request, response, next) => {
+router.get('/guest/event/:event_id', bearer, permissions('rGuest'), (request, response, next) => {
   guest.read({ where: { event_id: request.params.event_id } }, true)
     .then(guestList => response.status(200).send(guestList))
     .catch(error => next(error));
