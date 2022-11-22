@@ -24,8 +24,10 @@ class Collection {
     return this.model.findOne({ where: { id: id } });
   }
 
-  delete(id) {
-    return this.model.destroy({ where: { id: id } });
+  async delete(id) {
+    const record = await this.model.findOne({ where: { id: id } });
+    await this.model.destroy({ where: { id: id } });
+    return record;
   }
 
 }
