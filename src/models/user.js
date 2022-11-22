@@ -9,7 +9,7 @@ const userModel = (sequelize, DataTypes) => {
   const model = sequelize.define('Users', {
     username: { type: DataTypes.STRING, required: true, unique: true },
     password: { type: DataTypes.STRING, required: true },
-    role: { type: DataTypes.ENUM(['vendor', 'client', 'guest', 'admin']), required: true, defaultValue: 'user'},
+    role: { type: DataTypes.ENUM(['vendor', 'client', 'admin']), required: true, defaultValue: 'client'},
     token: {
       type: DataTypes.VIRTUAL,
       get() {
@@ -29,9 +29,6 @@ const userModel = (sequelize, DataTypes) => {
 
           // clients can do all CRUD to events and guests, they can only read from venues
           client: ['rEvent', 'cEvent', 'uEvent', 'dEvent', 'rVenue', 'rGuest', 'cGuest', 'uGuest', 'dGuest'],
-
-          // guests can only create a guest
-          guest: ['cGuest'],
 
           // admin have all the rights
           admin: ['all'],
