@@ -14,6 +14,7 @@ const eventModel = (sequelize, DataTypes) => sequelize.define('Event', {
   cater: { type: DataTypes.BOOLEAN, required: true },
   estimatedGuestCount: { type: DataTypes.NUMBER, required: true },
   guestList: { type: DataTypes.ARRAY(DataTypes.NUMBER), required: true },
+  inviteCode: { type: DataTypes.STRING, required: true },
 });
 
 module.exports = eventModel;
